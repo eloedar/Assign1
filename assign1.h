@@ -15,20 +15,12 @@
 /// Instead of using the *magic number* 1e9 + 7 everywhere in your program, you should use this constant when you need to take a module
 extern const int MODULO;
 
-/**
- * Calculate power of x^n in O(log n)
- * @todo task 1, 20 pts
- *
- * @param x the base number
- * @param n the exponent number
- * @return the power, an integer
- */
 int quick_power(int x, int n);
 
 /**
  * Calculate the result the of matrix addition
  * When returning 1, do not modify the entities in @p mat_res
- * @todo task 2-1, 20 pts
+ * task 2-1, 20 pts
  *
  * @param mat_res the matrix used to store the result of A + B
  * @return 1 if the size of @p mat_res does not match required size or @p mat_a and @p mat_b cannot do the addition; 0 otherwise
@@ -41,7 +33,8 @@ int matrix_addition(matrix mat_a, matrix mat_b, matrix mat_res);
  * @todo task 2-2, 30 pts
  *
  * @param mat_res the matrix used to store the result of A * B
- * @return 1 if the size of @p mat_res does not match required size or @p mat_a and @p mat_b cannot do the multiplication; 0 otherwise
+ * @return 1 if the size of @p mat_res does not match required size or @p mat_a and @p mat_b
+ * cannot do the multiplication; 0 otherwise
  * @attention it is guaranteed that @p mat_res is different from @p mat_a or @p mat_b
  */
 int matrix_multiplication(matrix mat_a, matrix mat_b, matrix mat_res);
