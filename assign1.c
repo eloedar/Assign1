@@ -30,7 +30,7 @@ int matrix_addition(matrix mat_a, matrix mat_b, matrix mat_res) {
     }
     for (int i = 0; i < mat_res.m_row; ++i)
         for (int j = 0; j < mat_res.m_col; ++j) {
-            int val = ((long long) get_by_index(mat_a, i, j)) * get_by_index(mat_b, i, j) % MODULO;
+            int val = ((long long) get_by_index(mat_a, i, j)) + get_by_index(mat_b, i, j) % MODULO;
             set_by_index(mat_res, i, j, val);
         }
     return 0;
