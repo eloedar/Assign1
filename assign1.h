@@ -30,7 +30,6 @@ int matrix_addition(matrix mat_a, matrix mat_b, matrix mat_res);
 
 /**
  * Calculate the result the of matrix multiplication
- * @todo task 2-2, 30 pts
  *
  * @param mat_res the matrix used to store the result of A * B
  * @return 1 if the size of @p mat_res does not match required size or @p mat_a and @p mat_b
@@ -41,7 +40,6 @@ int matrix_multiplication(matrix mat_a, matrix mat_b, matrix mat_res);
 
 /**
  * Calculate the result the of matrix exponentiation in a naive way
- * @todo task 3, 15 pts
  *
  * @param mat_res the matrix used to store the result of mat_a ^ exp
  * @return 1 if the size of @p mat_res does not match required size or @p mat_a is not square; 0 otherwise
