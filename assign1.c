@@ -48,7 +48,7 @@ int matrix_multiplication(matrix mat_a, matrix mat_b, matrix mat_res) {
 }
 
 int naive_matrix_exp(matrix mat_a, int exp, matrix mat_res) {
-    if (mat_a.m_col != mat_a.m_row || mat_res.m_col != mat_a.m_col) {
+    if (mat_a.m_col != mat_a.m_row || mat_res.m_col != mat_a.m_col || mat_res.m_row != mat_a.m_row) {
         return 1;
     }
     matrix medium = create_matrix_all_zero(mat_a.m_row, mat_a.m_col);
@@ -64,7 +64,7 @@ int naive_matrix_exp(matrix mat_a, int exp, matrix mat_res) {
 }
 
 int fast_matrix_exp(matrix mat_a, long long exp, matrix mat_res) {
-    if (mat_a.m_col != mat_a.m_row || mat_res.m_col != mat_a.m_col) {
+    if (mat_a.m_col != mat_a.m_row || mat_res.m_col != mat_a.m_col || mat_res.m_row != mat_a.m_row) {
         return 1;
     }
     matrix ans = create_matrix_all_zero(mat_a.m_col, mat_a.m_col);
