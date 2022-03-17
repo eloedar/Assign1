@@ -1,31 +1,6 @@
 #include <stdio.h>
 #include "assign1.h"
 
-
-int main() {
-//    matrix test = create_matrix_all_zero(2, 2);
-//    set_by_index(test, 0, 0, 4);
-//    set_by_index(test, 0, 1, -1);
-//    set_by_index(test, 1, 0, 2);
-//    set_by_index(test, 1, 1, 3);
-//    matrix res = create_matrix_all_zero(2, 2);
-//    matrix res2 = create_matrix_all_zero(2, 2);
-//    fast_matrix_exp(test, 12, res);
-//    printf("fast: %d %d \n", get_by_index(res, 0, 0), get_by_index(res, 0, 1));
-//    printf("fast: %d %d\n", get_by_index(res, 1, 0), get_by_index(res, 1, 1));
-//    naive_matrix_exp(test, 12, res2);
-//    printf("na: %d %d \n", get_by_index(res2, 0, 0), get_by_index(res2, 0, 1));
-//    printf("na: %d %d\n", get_by_index(res2, 1, 0), get_by_index(res2, 1, 1));
-    matrix test = create_matrix_all_zero(2, 2);
-    matrix ans = create_matrix_all_zero(2, 2);
-    set_by_index(test,0,0,1e9);
-    matrix_addition(test,test,ans);
-    printf("%d\n", get_by_index(ans,0,0));
-
-    return 0;
-
-}
-
 int quick_power(int x, int n) {
     unsigned long long ans = 1;
     unsigned long long power_factor = (unsigned long long) x;
@@ -36,7 +11,7 @@ int quick_power(int x, int n) {
         power_factor = (power_factor * power_factor % (MODULO));
         n = n / 2;
     }
-    return ans % (MODULO);
+    return (int) ans % (MODULO);
 }
 
 int matrix_addition(matrix mat_a, matrix mat_b, matrix mat_res) {
@@ -48,8 +23,8 @@ int matrix_addition(matrix mat_a, matrix mat_b, matrix mat_res) {
     }
     for (int i = 0; i < mat_res.m_row; ++i)
         for (int j = 0; j < mat_res.m_col; ++j) {
-            int val = ((long)get_by_index(mat_a, i, j) + (long)get_by_index(mat_b, i, j)) % MODULO;
-            set_by_index(mat_res, i, j, val);
+            long val = ((long) get_by_index(mat_a, i, j) + (long) get_by_index(mat_b, i, j)) % MODULO;
+            set_by_index(mat_res, i, j, (int) val);
         }
     return 0;
 }
@@ -67,7 +42,7 @@ int matrix_multiplication(matrix mat_a, matrix mat_b, matrix mat_res) {
                 val = val % MODULO +
                       ((long long) get_by_index(mat_a, i, k) * (long long) get_by_index(mat_b, k, j)) % MODULO;
             }
-            set_by_index(mat_res, i, j, val % MODULO);
+            set_by_index(mat_res, i, j, (int) val % MODULO);
         }
     return 0;
 }
@@ -81,10 +56,9 @@ int naive_matrix_exp(matrix mat_a, int exp, matrix mat_res) {
     for (int i = 0; i < exp - 1; ++i) {
         matrix_multiplication(res_med, mat_a, medium);
         res_med = copy_matrix(medium);
-//        printf("%d %d \n", get_by_index(res_med,0,0), get_by_index(res_med,0,1));
-//        printf("%d %d \n", get_by_index(res_med,1,0), get_by_index(res_med,1,1));
     }
-
+    printf("address of mat_res:%p , from method\n", &mat_res);
+    printf("address of res_med:%p , from method\n", &res_med);
     scalar_multiplication(res_med, 1, mat_res);
     return 0;
 }
@@ -111,4 +85,19 @@ int fast_matrix_exp(matrix mat_a, long long exp, matrix mat_res) {
     }
     scalar_multiplication(ans, 1, mat_res);
     return 0;
+}
+
+int fast_cal_fib(long long n)
+{
+    matrix fib = create_matrix_all_zero(2, 1);
+    set_by_index(fib, 0, 0, 1);
+    matrix temp = create_matrix_all_zero(2, 2);
+    set_by_index(temp, 0, 0, 1);
+    set_by_index(temp, 0, 1, 1);
+    set_by_index(temp, 1, 0, 1);
+    matrix temp_exp = create_matrix_all_zero(2, 2);
+    fast_matrix_exp(temp, n - 1, temp_exp);
+    matrix result = create_matrix_all_zero(2, 1);
+    matrix_multiplication(temp_exp, fib, result);
+    return get_by_index(result, 0, 0) % MODULO;
 }
