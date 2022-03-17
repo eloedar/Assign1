@@ -49,7 +49,6 @@ int naive_matrix_exp(matrix mat_a, int exp, matrix mat_res);
 
 /**
  * Calculate the result the of matrix exponentiation in a fast way
- * @todo task 4, 15 pts
  *
  * @param mat_res the matrix used to store the result of mat_a ^ exp
  * @return 1 if the size of @p mat_res does not match required size or @p mat_a is not square; 0 otherwise
@@ -59,7 +58,6 @@ int fast_matrix_exp(matrix mat_a, long long exp, matrix mat_res);
 
 /**
  * Calculate the nth number in Fibonacci Sequence using **Fast Matrix Exponentiation**
- * @todo task 5, 20 pts
  *
  * @param n the index of the result in Fibonacci Sequence
  * @return the number with index @n in Fibonacci Sequence

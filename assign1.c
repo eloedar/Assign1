@@ -87,17 +87,15 @@ int fast_matrix_exp(matrix mat_a, long long exp, matrix mat_res) {
     return 0;
 }
 
-int fast_cal_fib(long long n)
-{
-    matrix fib = create_matrix_all_zero(2, 1);
-    set_by_index(fib, 0, 0, 1);
+int fast_cal_fib(long long n) {
+
     matrix temp = create_matrix_all_zero(2, 2);
     set_by_index(temp, 0, 0, 1);
     set_by_index(temp, 0, 1, 1);
     set_by_index(temp, 1, 0, 1);
     matrix temp_exp = create_matrix_all_zero(2, 2);
     fast_matrix_exp(temp, n - 1, temp_exp);
-    matrix result = create_matrix_all_zero(2, 1);
-    matrix_multiplication(temp_exp, fib, result);
-    return get_by_index(result, 0, 0) % MODULO;
+
+    int result = get_by_index(temp_exp, 0, 0) % MODULO;
+    return result;
 }
